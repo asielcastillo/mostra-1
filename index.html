@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Título da Página: Otimizado para SEO e demonstração -->
-    <title>Sua Nova Landing Page | Serviços de Criação Web Personalizada</title>
+    <title data-key="index_page_title">Sua Nova Landing Page | Serviços de Criação Web Personalizada</title>
     
     <!-- Meta Descrição para SEO -->
-    <meta name="description" content="Desenvolvimento de Landing Pages otimizadas para conversão. Transforme suas ideias em resultados com design moderno e funcionalidade impecável.">
+    <meta name="description" data-key="index_meta_description" content="Desenvolvimento de Landing Pages otimizadas para conversão. Transforme suas ideias em resultados com design moderno e funcionalidade impecável.">
     
     <!-- Meta Keywords (otimizado para criação de landing pages) -->
     <meta name="keywords" content="landing page, criação de sites, desenvolvimento web, design responsivo, otimização SEO, Palmas TO, marketing digital, web design">
@@ -16,12 +16,12 @@
     <link rel="canonical" href="https://seusite.com.br/demo/"> 
 
     <!-- Open Graph Tags para redes sociais -->
-    <meta property="og:title" content="Criação de Landing Pages Profissionais - Alcance Seus Objetivos Online">
-    <meta property="og:description" content="Precisa de uma landing page que realmente converta? Desenvolvemos soluções web personalizadas para destacar seu negócio.">
+    <meta property="og:title" data-key="index_og_title" content="Criação de Landing Pages Profissionais - Alcance Seus Objetivos Online">
+    <meta property="og:description" data-key="index_og_description" content="Precisa de uma landing page que realmente converta? Desenvolvemos soluções web personalizadas para destacar seu negócio.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://seusite.com.br/demo/"> 
     <meta property="og:image" content="https://seusite.com.br/demo/score/logo-demo.png"> <!-- Imagem de exemplo para compartilhamento -->
-    <meta property="og:locale" content="pt_BR">
+    <meta property="og:locale" data-key="index_og_locale" content="pt_BR">
     <meta property="og:site_name" content="Sua Empresa de Criação de Landing Pages"> 
     <meta property="og:see_also" content="https://www.instagram.com/asielcastillo/">
 
@@ -43,6 +43,19 @@
 
     <div class="page-container">
         <header class="site-header">
+            <!-- Selector de Idioma -->
+            <div class="language-selector">
+                <button class="lang-button" data-lang="pt" data-current-page="index">
+                    <img src="file/brazil-flag.png" alt="Português">
+                </button>
+                <button class="lang-button" data-lang="en" data-current-page="index">
+                    <img src="file/usa-flag.png" alt="English">
+                </button>
+                <button class="lang-button" data-lang="es" data-current-page="index">
+                    <img src="file/spain-flag.png" alt="Español">
+                </button>
+            </div>
+
             <!-- Imagem de Perfil Circular com Transição -->
             <div class="profile-image-wrapper animate-on-scroll">
                 <img src="file/perfil-homem.png" alt="Foto de perfil: Desenvolvedor Web" class="profile-image profile-default">
@@ -51,10 +64,10 @@
             
             <!-- NOVO: Contêiner para o bloco de texto do cabeçalho -->
             <div class="header-text-container">
-                <h1 class="client-name animate-on-scroll delay-1">Sua Ideia, Nosso Design.</h1>
-                <p class="tagline animate-on-scroll delay-2">Landing Pages Profissionais que Convertem. Rápido, Eficaz e Personalizado.</p>
+                <h1 class="client-name animate-on-scroll delay-1" data-key="index_client_name">Sua Ideia, Nosso Design.</h1>
+                <p class="tagline animate-on-scroll delay-2" data-key="index_tagline">Landing Pages Profissionais que Convertem. Rápido, Eficaz e Personalizado.</p>
                 <!-- Descrição Genérica da Empresa de Criação de Landing Pages -->
-                <p class="description-text animate-on-scroll delay-3">
+                <p class="description-text animate-on-scroll delay-3" data-key="index_description_text">
                     Transformamos a visão do seu negócio em experiências digitais impactantes. Com foco em design responsivo, usabilidade e otimização para motores de busca, criamos landing pages que geram resultados reais e impulsionam seu crescimento online.
                 </p>
             </div>
@@ -64,22 +77,22 @@
             <nav class="links-navigation">
                 <!-- Botão WhatsApp com o número do Asiel -->
                 <a href="https://api.whatsapp.com/send/?phone=5563992510109&text=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20de%20criação%20de%20landing%20pages." class="action-button animate-on-scroll delay-5" target="_blank" rel="noopener noreferrer">
-                    <span>Fale Conosco para um Orçamento</span>
+                    <span data-key="index_whatsapp_button">Fale Conosco para um Orçamento</span>
                     <i class="fab fa-whatsapp"></i>
                 </a>
                 <!-- Botão Instagram com o link do Asiel -->
                 <a href="https://www.instagram.com/asielcastillo/" class="action-button animate-on-scroll delay-6" target="_blank" rel="noopener noreferrer">
-                    <span>Veja Nossos Projetos no Instagram</span>
+                    <span data-key="index_instagram_button">Veja Nossos Projetos no Instagram</span>
                     <i class="fab fa-instagram"></i>
                 </a>
                 <!-- Botão de Localização -->
                 <a href="https://maps.app.goo.gl/vqTGAHuSe7DtGdzEA" class="action-button animate-on-scroll delay-7" target="_blank" rel="noopener noreferrer">
-                    <span>Encontre-nos no Mapa</span>
+                    <span data-key="index_location_button">Encontre-nos no Mapa</span>
                     <i class="fas fa-map-marker-alt"></i>
                 </a>
                 <!-- Botão para a página de serviços (agora demo de serviços) -->
                 <a href="servicos.html" class="action-button animate-on-scroll delay-8">
-                    <span>Conheça Nossas Soluções</span>
+                    <span data-key="index_solutions_button">Conheça Nossas Soluções</span>
                     <i class="fas fa-rocket"></i>
                 </a>
             </nav>
@@ -87,7 +100,7 @@
             <footer class="social-link animate-on-scroll delay-9">
                 <a href="https://www.instagram.com/asielcastillo/" class="instagram-profile" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-instagram"></i>
-                    <span>@asielcastillo</span>
+                    <span data-key="instagram_profile">@asielcastillo</span>
                 </a>
             </footer>
         </main>
