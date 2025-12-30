@@ -82,7 +82,7 @@ body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start; /* Alinha no topo, permitindo scroll */
     overflow-y: auto; /* Permite rolagem vertical */
     -webkit-overflow-scrolling: touch; /* Melhoria de rolagem para iOS */
     position: relative;
@@ -309,112 +309,6 @@ body::after {
     transition: color 0.3s ease;
 }
 
-/* Estilos para h1 na página de serviços (título principal) com destaque */
-.services-list > .client-name { 
-    font-size: 2.2rem;
-    margin-bottom: 15px; /* Ajusta margem com o sublinhado */
-}
-
-/* Estilos para h2 na página de serviços (títulos dos serviços individuais) com destaque */
-.services-list .service-description h2 {
-    font-family: 'Playfair Display', serif; /* Aplica a nova fonte aos títulos de serviço */
-    font-weight: 700;
-    margin-top: 0; /* Garante que não haja margem superior extra */
-    margin-bottom: 15px; /* Ajusta margem com o sublinhado */
-    color: var(--header-text-color); /* Mantém a cor para contraste */
-    position: relative;
-    display: inline-block;
-    padding-bottom: 6px; /* Espaço para o sublinhado */
-    letter-spacing: 0.05em;
-}
-.services-list .service-description h2::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 40px; /* Comprimento do sublinhado */
-    height: 2px; /* Espessura do sublinhado */
-    background-color: var(--button-bg-color); /* Usa a cor vibrante do botão */
-    border-radius: 1px;
-}
-
-
-/* Estilos para a animação ao scroll (aparecer/desaparecer) */
-.animate-on-scroll {
-    opacity: 0; /* Começa invisível */
-    transform: translateY(20px); /* Começa um pouco abaixo da posição final */
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Transição suave de opacidade e posição */
-}
-
-.animate-on-scroll.is-visible {
-    opacity: 1; /* Fica visível */
-    transform: translateY(0); /* Sobe para a posição final */
-}
-
-/* Atrasos para animações sequenciais */
-.animate-on-scroll.delay-1 { transition-delay: 0.1s; }
-.animate-on-scroll.delay-2 { transition-delay: 0.2s; }
-.animate-on-scroll.delay-3 { transition-delay: 0.3s; }
-.animate-on-scroll.delay-4 { transition-delay: 0.4s; }
-.animate-on-scroll.delay-5 { transition-delay: 0.5s; }
-.animate-on-scroll.delay-6 { transition-delay: 0.6s; }
-.animate-on-scroll.delay-7 { transition-delay: 0.7s; }
-.animate-on-scroll.delay-8 { transition-delay: 0.8s; }
-.animate-on-scroll.delay-9 { transition-delay: 0.9s; } 
-
-
-/* --- ESTILOS ESPECÍFICOS PARA A PÁGINA DE SERVIÇOS (LAYOUT DE IMAGEM/TEXTO) --- */
-
-/* Contêiner de cada item de serviço */
-.services-list .service-item {
-    display: flex; /* Para alinhar imagem e descrição lado a lado */
-    flex-direction: column; /* Padrão em telas pequenas: empilha imagem e texto */
-    background-color: rgba(45, 45, 45, 0.7); /* Fundo levemente mais claro que o card, translúcido */
-    border-radius: 15px;
-    overflow: hidden; /* Garante que as bordas arredondadas funcionem com a imagem */
-    margin-bottom: 25px; /* Espaço entre os itens de serviço */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição para hover */
-    border: 1px solid var(--card-border-color); /* Borda sutil */
-}
-
-.services-list .service-item:hover {
-    transform: translateY(-5px); /* Efeito de elevação sutil ao passar o mouse */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-/* Contêiner da imagem do serviço */
-.services-list .service-image-container {
-    flex-shrink: 0; /* Impede que a imagem encolha */
-    width: 100%;
-    height: 200px; /* Altura fixa para as imagens em mobile */
-    overflow: hidden;
-}
-
-.services-list .service-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorção */
-    display: block;
-    transition: transform 0.3s ease; /* Efeito de zoom ao passar o mouse */
-}
-
-.services-list .service-item:hover .service-image-container img {
-    transform: scale(1.05); /* Pequeno zoom na imagem ao passar o mouse */
-}
-
-/* Bloco da descrição do serviço */
-.services-list .service-description {
-    padding: 20px;
-    color: var(--main-text-color);
-}
-
-.services-list .service-description p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 0;
-}
-
 /* --- NOVO: Estilos para o Seletor de Idioma --- */
 .language-selector {
     position: absolute; /* Posiciona no canto superior direito */
@@ -455,6 +349,180 @@ body::after {
     transform: scale(1.1); /* Um pequeno zoom na bandeira ativa */
 }
 
+/* --- ESTILOS PARA AS NOVAS SEÇÕES DENTRO DO CONTENT-CARD --- */
+
+/* Subtítulos gerais para as seções dentro do content-card */
+.section-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--header-text-color); /* Mantém a cor para contraste com o card */
+    margin-top: 40px;
+    margin-bottom: 25px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+    letter-spacing: 0.05em;
+}
+.section-subtitle::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background-color: var(--button-bg-color);
+    border-radius: 1px;
+}
+
+.section-intro-text {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--main-text-color);
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+/* ------------------------------------ */
+/* SEÇÃO: Diferenciais Concisos */
+/* ------------------------------------ */
+.concise-differentiators {
+    margin-bottom: 40px; /* Espaço antes da próxima seção */
+}
+
+.concise-differentiators .section-subtitle {
+    margin-top: 0; /* Remove margem superior se for a primeira seção */
+    margin-bottom: 30px;
+}
+
+.differentiator-points {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaçamento entre os pontos */
+    padding: 0 10px;
+}
+
+.differentiator-point {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: rgba(255, 255, 255, 0.05); /* Um fundo muito sutil para destacar o ponto */
+    padding: 15px 20px;
+    border-radius: 10px;
+    border-left: 4px solid var(--button-bg-color); /* Borda lateral para destaque */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.differentiator-point:hover {
+    transform: translateX(5px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.differentiator-point .icon-small {
+    font-size: 1.8rem;
+    color: var(--button-bg-color);
+    flex-shrink: 0; /* Impede que o ícone encolha */
+}
+
+.differentiator-point p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--main-text-color);
+}
+
+.differentiator-point p strong {
+    color: var(--header-text-color); /* Destaca o texto forte */
+}
+
+/* ------------------------------------ */
+/* SEÇÃO: Nossas Soluções Digitais */
+/* ------------------------------------ */
+.our-solutions {
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+.solutions-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Padrão: uma coluna em mobile */
+    gap: 25px;
+    padding: 0 10px;
+}
+
+.solution-item {
+    background-color: rgba(255, 255, 255, 0.08); /* Fundo um pouco mais escuro que os diferenciais */
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    border-bottom: 5px solid var(--social-icon-color); /* Borda inferior de destaque */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.solution-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.solution-item .icon-solution {
+    font-size: 3rem;
+    color: var(--button-bg-color);
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.solution-item:hover .icon-solution {
+    color: var(--header-text-color); /* Muda a cor do ícone no hover */
+}
+
+.solution-item h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--header-text-color);
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.solution-item p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--main-text-color);
+    margin-bottom: 0;
+}
+
+
+/* --- Estilos para animação ao scroll (aparecer/desaparecer) --- */
+.animate-on-scroll {
+    opacity: 0; /* Começa invisível */
+    transform: translateY(20px); /* Começa um pouco abaixo da posição final */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Transição suave de opacidade e posição */
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1; /* Fica visível */
+    transform: translateY(0); /* Sobe para a posição final */
+}
+
+/* Atrasos para animações sequenciais */
+.animate-on-scroll.delay-1 { transition-delay: 0.1s; }
+.animate-on-scroll.delay-2 { transition-delay: 0.2s; }
+.animate-on-scroll.delay-3 { transition-delay: 0.3s; }
+.animate-on-scroll.delay-4 { transition-delay: 0.4s; }
+.animate-on-scroll.delay-5 { transition-delay: 0.5s; }
+.animate-on-scroll.delay-6 { transition-delay: 0.6s; }
+.animate-on-scroll.delay-7 { transition-delay: 0.7s; }
+.animate-on-scroll.delay-8 { transition-delay: 0.8s; }
+.animate-on-scroll.delay-9 { transition-delay: 0.9s; } 
+
+
+/* --- RESPONSIVIDADE --- */
 
 /* Ajustes Responsivos para Telas Menores (até 600px) */
 @media (max-width: 600px) {
@@ -491,6 +559,56 @@ body::after {
         padding: 25px 20px;
     }
 
+    /* Subtítulos */
+    .section-subtitle {
+        font-size: 1.6rem;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    .section-subtitle::after {
+        width: 40px;
+    }
+    .section-intro-text {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    /* Diferenciais Concisos */
+    .differentiator-points {
+        gap: 15px;
+    }
+    .differentiator-point {
+        padding: 12px 15px;
+    }
+    .differentiator-point .icon-small {
+        font-size: 1.5rem;
+    }
+    .differentiator-point p {
+        font-size: 0.9rem;
+    }
+
+    /* Soluções Digitais */
+    .our-solutions {
+        margin-top: 40px;
+    }
+    .solutions-grid {
+        gap: 20px;
+    }
+    .solution-item {
+        padding: 20px;
+    }
+    .solution-item .icon-solution {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+    }
+    .solution-item h3 {
+        font-size: 1.2rem;
+    }
+    .solution-item p {
+        font-size: 0.85rem;
+    }
+
+
     /* Ajuste de botões em telas menores */
     .action-button {
         font-size: 1rem;
@@ -507,24 +625,6 @@ body::after {
     }
     .social-link .instagram-profile span {
         font-size: 1.05rem;
-    }
-
-    /* Títulos gerais da página de serviços em telas menores */
-    .services-list > .client-name { 
-        font-size: 1.8rem;
-    }
-    .services-list > .client-name::after {
-        width: 50px;
-    }
-    /* Títulos dos serviços individuais em telas menores */
-    .services-list .service-description h2 { 
-        font-size: 1.3rem;
-    }
-    .services-list .service-description h2::after {
-        width: 30px;
-    }
-    .services-list .service-description p {
-        font-size: 0.9rem;
     }
 
     /* Ajustes para o seletor de idioma em telas menores */
@@ -561,6 +661,55 @@ body::after {
         font-size: 0.85rem;
         padding: 0 5px;
     }
+    /* Subtítulos */
+    .section-subtitle {
+        font-size: 1.4rem;
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+    .section-subtitle::after {
+        width: 30px;
+    }
+    .section-intro-text {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+
+    /* Diferenciais Concisos */
+    .differentiator-points {
+        gap: 10px;
+    }
+    .differentiator-point {
+        padding: 10px 12px;
+    }
+    .differentiator-point .icon-small {
+        font-size: 1.3rem;
+    }
+    .differentiator-point p {
+        font-size: 0.85rem;
+    }
+
+    /* Soluções Digitais */
+    .our-solutions {
+        margin-top: 30px;
+    }
+    .solutions-grid {
+        gap: 15px;
+    }
+    .solution-item {
+        padding: 18px;
+    }
+    .solution-item .icon-solution {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    .solution-item h3 {
+        font-size: 1.1rem;
+    }
+    .solution-item p {
+        font-size: 0.8rem;
+    }
+
     /* Ajuste de botões em telas muito pequenas */
     .action-button {
         font-size: 0.9rem;
@@ -577,26 +726,6 @@ body::after {
     }
     .social-link .instagram-profile span {
         font-size: 1rem;
-    }
-    /* Títulos gerais da página de serviços em telas muito pequenas */
-    .services-list > .client-name {
-        font-size: 1.6rem;
-    }
-    .services-list > .client-name::after {
-        width: 35px;
-    }
-    /* Títulos dos serviços individuais em telas muito pequenas */
-    .services-list .service-description h2 {
-        font-size: 1.2rem;
-    }
-    .services-list .service-description h2::after {
-        width: 25px;
-    }
-    .services-list .service-description p {
-        font-size: 0.85rem;
-    }
-    .services-list .service-image-container {
-        height: 180px; /* Altura da imagem um pouco menor em telas muito pequenas */
     }
 }
 
@@ -668,52 +797,73 @@ body::after {
         padding: 40px 50px; /* Mais padding para o card */
     }
 
+    /* Subtítulos */
+    .section-subtitle {
+        font-size: 2.5rem;
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+    .section-subtitle::after {
+        width: 60px;
+        height: 3px;
+    }
+    .section-intro-text {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+    }
+
+    /* Diferenciais Concisos */
+    .differentiator-points {
+        flex-direction: row; /* Layout horizontal em desktop */
+        justify-content: space-between;
+        gap: 30px;
+    }
+    .differentiator-point {
+        flex: 1; /* Distribui o espaço igualmente */
+        flex-direction: column; /* Ícone em cima, texto em baixo */
+        align-items: center;
+        text-align: center;
+        padding: 25px 20px;
+        border-left: none; /* Remove borda lateral */
+        border-bottom: 4px solid var(--button-bg-color); /* Adiciona borda inferior */
+    }
+    .differentiator-point:hover {
+        transform: translateY(-5px); /* Efeito de elevação */
+    }
+    .differentiator-point .icon-small {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+    .differentiator-point p {
+        font-size: 1rem;
+    }
+
+    /* Soluções Digitais */
+    .solutions-grid {
+        grid-template-columns: repeat(2, 1fr); /* Duas colunas em desktop */
+        gap: 30px;
+    }
+    .solution-item {
+        padding: 35px;
+    }
+    .solution-item .icon-solution {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+    }
+    .solution-item h3 {
+        font-size: 1.5rem;
+    }
+    .solution-item p {
+        font-size: 1rem;
+    }
+
     .links-navigation {
         display: grid; /* Usa grid para organizar os botões */
-        grid-template-columns: repeat(2, 1fr); /* Duas colunas de botões */
+        grid-template-columns: repeat(3, 1fr); /* Três colunas de botões */
         gap: 20px; /* Espaçamento entre os botões */
     }
 
     .action-button {
         margin-bottom: 0; /* Remove margem inferior dos botões no grid */
-    }
-
-    /* Permite que o contêiner da página de serviços se expanda */
-    .wide-page-container {
-        max-width: 1100px; /* Mesma largura do index para consistência */
-        padding: 70px 40px;
-    }
-
-    /* Ajustes específicos para os itens de serviço dentro de um contêiner largo (manteremos o zigue-zague por enquanto) */
-    .wide-page-container .services-list .service-item {
-        flex-direction: row; 
-        align-items: stretch;
-        min-height: 280px; /* Altura mínima ajustada */
-    }
-
-    .wide-page-container .services-list .service-item:nth-child(even) { 
-        flex-direction: row-reverse;
-    }
-
-    .wide-page-container .services-list .service-image-container {
-        width: 40%; /* Ajusta a largura da imagem */
-    }
-
-    .wide-page-container .services-list .service-description {
-        width: 60%; /* Ajusta a largura da descrição */
-        padding: 35px; /* Mais padding */
-    }
-
-    .wide-page-container .services-list .service-description h2 {
-        font-size: 2.2rem; /* Título maior para desktop */
-        margin-bottom: 20px;
-    }
-    .wide-page-container .services-list .service-description h2::after {
-        width: 60px; /* Sublinhado mais longo para desktop */
-    }
-
-    .wide-page-container .services-list .service-description p {
-        font-size: 1.1rem; /* Texto maior para desktop */
-        line-height: 1.8;
     }
 }

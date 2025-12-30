@@ -31,6 +31,8 @@
 
     <!-- Link para o Font Awesome para os ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- NOVO: Link para o CSS do AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="theme-modern-vivid">
@@ -45,13 +47,13 @@
         <header class="site-header">
             <!-- Selector de Idioma -->
             <div class="language-selector">
-                <button class="lang-button" data-lang="pt" data-current-page="index">
+                <button class="lang-button" data-lang="pt">
                     <img src="file/brazil-flag.png" alt="Português">
                 </button>
-                <button class="lang-button" data-lang="en" data-current-page="index">
+                <button class="lang-button" data-lang="en">
                     <img src="file/usa-flag.png" alt="English">
                 </button>
-                <button class="lang-button" data-lang="es" data-current-page="index">
+                <button class="lang-button" data-lang="es">
                     <img src="file/spain-flag.png" alt="Español">
                 </button>
             </div>
@@ -62,7 +64,7 @@
                 <img src="file/perfil-mulher.png" alt="Foto de perfil: Design de Landing Pages" class="profile-image profile-hover">
             </div>
             
-            <!-- NOVO: Contêiner para o bloco de texto do cabeçalho -->
+            <!-- Contêiner para o bloco de texto do cabeçalho -->
             <div class="header-text-container">
                 <h1 class="client-name animate-on-scroll delay-1" data-key="index_client_name">Sua Ideia, Nosso Design.</h1>
                 <p class="tagline animate-on-scroll delay-2" data-key="index_tagline">Landing Pages Profissionais que Convertem. Rápido, Eficaz e Personalizado.</p>
@@ -74,26 +76,72 @@
         </header>
 
         <main class="content-card animate-on-scroll delay-4">
+            <!-- SEÇÃO: Diferenciais Concisos -->
+            <section class="concise-differentiators">
+                <h2 class="section-subtitle" data-key="differentiators_short_title">Por Que Nos Escolher?</h2>
+                <div class="differentiator-points">
+                    <div class="differentiator-point" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-tachometer-alt icon-small"></i>
+                        <p data-key="differentiator_speed"><strong>Agilidade Extrema:</strong> Seu projeto online em tempo recorde.</p>
+                    </div>
+                    <div class="differentiator-point" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-lightbulb icon-small"></i>
+                        <p data-key="differentiator_custom"><strong>Personalização Total:</strong> Sua marca, sua identidade, sem limites.</p>
+                    </div>
+                    <div class="differentiator-point" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-chart-line icon-small"></i>
+                        <p data-key="differentiator_results"><strong>Foco em Resultados:</strong> Design para converter e impulsionar seu sucesso.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO: Nossas Soluções Digitais (com cards e ícones) -->
+            <section class="our-solutions">
+                <h2 class="section-subtitle" data-key="solutions_main_title">Nossas Soluções Digitais</h2>
+                <p class="section-intro-text" data-key="solutions_intro">Impulsione seu negócio com serviços que realmente fazem a diferença.</p>
+                <div class="solutions-grid">
+                    <!-- Serviço 1 -->
+                    <div class="solution-item" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-comments icon-solution"></i>
+                        <h3 data-key="solution1_title">Consultoria Estratégica</h3>
+                        <p data-key="solution1_description">Analisamos e planejamos a melhor estratégia digital para o seu negócio, garantindo resultados tangíveis e crescimento.</p>
+                    </div>
+                    <!-- Serviço 2 -->
+                    <div class="solution-item" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-code icon-solution"></i>
+                        <h3 data-key="solution2_title">Desenvolvimento Personalizado</h3>
+                        <p data-key="solution2_description">Criamos projetos web do zero, com design exclusivo e funcionalidade impecável, adaptados à sua visão e objetivos.</p>
+                    </div>
+                    <!-- Serviço 3 -->
+                    <div class="solution-item" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-chart-pie icon-solution"></i>
+                        <h3 data-key="solution3_title">Otimização Contínua</h3>
+                        <p data-key="solution3_description">Acompanhamos e otimizamos sua presença digital, garantindo que você esteja sempre à frente da concorrência e evoluindo.</p>
+                    </div>
+                    <!-- Serviço 4 -->
+                    <div class="solution-item" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fas fa-lightbulb icon-solution"></i>
+                        <h3 data-key="solution4_title">Soluções Inovadoras</h3>
+                        <p data-key="solution4_description">Implementamos as últimas tendências e tecnologias para impulsionar seu crescimento e engajar seu público-alvo de forma única.</p>
+                    </div>
+                </div>
+            </section>
+
             <nav class="links-navigation">
-                <!-- Botão WhatsApp com o número do Asiel -->
+                <!-- Botão WhatsApp com CTA direta para projeto -->
                 <a href="https://api.whatsapp.com/send/?phone=5563992510109&text=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20de%20criação%20de%20landing%20pages." class="action-button animate-on-scroll delay-5" target="_blank" rel="noopener noreferrer">
-                    <span data-key="index_whatsapp_button">Fale Conosco para um Orçamento</span>
+                    <span data-key="index_whatsapp_button_cta">Quero Fazer Meu Projeto!</span>
                     <i class="fab fa-whatsapp"></i>
                 </a>
-                <!-- Botão Instagram com o link do Asiel -->
+                <!-- Botão Instagram -->
                 <a href="https://www.instagram.com/asielcastillo/" class="action-button animate-on-scroll delay-6" target="_blank" rel="noopener noreferrer">
-                    <span data-key="index_instagram_button">Veja Nossos Projetos no Instagram</span>
+                    <span data-key="index_instagram_button_cta">Conheça Meu Trabalho no Instagram</span>
                     <i class="fab fa-instagram"></i>
                 </a>
                 <!-- Botão de Localização -->
                 <a href="https://maps.app.goo.gl/vqTGAHuSe7DtGdzEA" class="action-button animate-on-scroll delay-7" target="_blank" rel="noopener noreferrer">
-                    <span data-key="index_location_button">Encontre-nos no Mapa</span>
+                    <span data-key="index_location_button_cta">Localização do Escritório</span>
                     <i class="fas fa-map-marker-alt"></i>
-                </a>
-                <!-- Botão para a página de serviços (agora demo de serviços) -->
-                <a href="servicos.html" class="action-button animate-on-scroll delay-8">
-                    <span data-key="index_solutions_button">Conheça Nossas Soluções</span>
-                    <i class="fas fa-rocket"></i>
                 </a>
             </nav>
 
@@ -106,7 +154,9 @@
         </main>
     </div>
 
-    <!-- Link para o arquivo JavaScript -->
+    <!-- NOVO: Link para o JavaScript do AOS (Animate On Scroll) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- CORRIGIDO: O seu script.js DEVE VIR DEPOIS do aos.js para funcionar -->
     <script src="script.js"></script>
 </body>
 </html>

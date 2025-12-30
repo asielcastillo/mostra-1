@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Lógica do Slideshow de Fundo ---
+    AOS.init({
+        duration: 1000, // global duration for AOS animations
+        once: true // animations happen only once
+    });
+
+    // Theme switching logic (if applicable, based on your previous code)
+    // For now, keeping the body class as theme-modern-vivid
+    // You can add logic here to load a theme preference or cycle themes
+
+    // Image slideshow for background
     const images = document.querySelectorAll('#background-slideshow img');
     let currentIndex = 0;
     const fadeDuration = 2500; // Duração da transição (fade) em milissegundos (2.5 segundos - MAIS SUAVE)
@@ -18,20 +27,21 @@ document.addEventListener('DOMContentLoaded', () => {
     function nextImage() {
         images[currentIndex].classList.remove('active');
         currentIndex = (currentIndex + 1) % images.length;
+        // Pequeno delay para garantir que a classe 'active' seja removida antes de adicionar na próxima
         setTimeout(() => {
             showImage(currentIndex);
         }, 50); 
     }
 
     if (images.length > 0) {
-        showImage(currentIndex);
+        showImage(currentIndex); // Mostra a primeira imagem imediatamente
         setInterval(nextImage, displayDuration + fadeDuration);
     }
 
-    // --- Lógica de Transição de Imagem de Perfil Automática (APENAS SE EXISTIR NA PÁGINA) ---
+    // --- Lógica de Transição de Imagem de Perfil Automática ---
     const profileDefault = document.querySelector('.profile-image-wrapper .profile-default');
     const profileHover = document.querySelector('.profile-image-wrapper .profile-hover'); 
-    const profileTransitionInterval = 15000; // Intervalo para a troca da imagem de perfil (15 segundos - MAIS ESPAÇADO)
+    const profileTransitionInterval = 15000; // Intervalo para a troca da imagem de perfil (15 segundos)
 
     if (profileDefault && profileHover) {
         let isDefaultVisible = true; 
@@ -52,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const themes = ['theme-modern-vivid', 'theme-gray-black', 'theme-white-black']; 
     let currentThemeIndex = 0;
-    const themeChangeInterval = 15000; // Alterna o tema a cada 15 segundos (15000 ms - MAIS ESPAÇADO)
+    const themeChangeInterval = 15000; // Alterna o tema a cada 15 segundos
 
     // Certifica que o body começa com uma das classes de tema se ele não tiver nenhuma
     if (!body.classList.contains(themes[currentThemeIndex])) {
@@ -73,14 +83,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.1
+        threshold: 0.1 // Quando 10% do elemento estiver visível
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
+                observer.unobserve(entry.target); // Deixa de observar o elemento uma vez que ele já apareceu
             } 
         });
     }, observerOptions);
@@ -89,149 +99,147 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(element);
     });
 
-    // --- NOVO: Lógica de Multi-idiomas ---
+    // --- Lógica de Multi-idiomas ---
 
-    // Objeto de traduções. As chaves devem AGORA corresponder EXATAMENTE aos data-key nos HTMLs.
+    // Todas as traduções para a página única
     const translations = {
-        'index': {
-            'pt': {
-                'index_page_title': 'Sua Nova Landing Page | Serviços de Criação Web Personalizada',
-                'index_meta_description': 'Desenvolvimento de Landing Pages otimizadas para conversão. Transforme suas ideias em resultados com design moderno e funcionalidade impecável.',
-                'index_og_title': 'Criação de Landing Pages Profissionais - Alcance Seus Objetivos Online',
-                'index_og_description': 'Precisa de uma landing page que realmente converta? Desenvolvemos soluções web personalizadas para destacar seu negócio.',
-                'index_og_locale': 'pt_BR',
-                'index_client_name': 'Sua Ideia, Nosso Design.',
-                'index_tagline': 'Landing Pages Profissionais que Convertem. Rápido, Eficaz e Personalizado.',
-                'index_description_text': 'Transformamos a visão do seu negócio em experiências digitais impactantes. Com foco em design responsivo, usabilidade e otimização para motores de busca, criamos landing pages que geram resultados reais e impulsionam seu crescimento online.',
-                'index_whatsapp_button': 'Fale Conosco para um Orçamento',
-                'index_instagram_button': 'Veja Nossos Projetos no Instagram',
-                'index_location_button': 'Encontre-nos no Mapa',
-                'index_solutions_button': 'Conheça Nossas Soluções',
-                'instagram_profile': '@asielcastillo'
-            },
-            'en': {
-                'index_page_title': 'Your New Landing Page | Custom Web Creation Services',
-                'index_meta_description': 'Development of optimized Landing Pages for conversion. Turn your ideas into results with modern design and impeccable functionality.',
-                'index_og_title': 'Professional Landing Page Creation - Achieve Your Online Goals',
-                'index_og_description': 'Need a landing page that truly converts? We develop custom web solutions to highlight your business.',
-                'index_og_locale': 'en_US',
-                'index_client_name': 'Your Idea, Our Design.',
-                'index_tagline': 'Professional Landing Pages that Convert. Fast, Effective and Personalized.',
-                'index_description_text': 'We transform your business vision into impactful digital experiences. Focusing on responsive design, usability, and search engine optimization, we create landing pages that generate real results and drive your online growth.',
-                'index_whatsapp_button': 'Talk to Us for a Quote',
-                'index_instagram_button': 'See Our Projects on Instagram',
-                'index_location_button': 'Find Us on the Map',
-                'index_solutions_button': 'Discover Our Solutions',
-                'instagram_profile': '@asielcastillo'
-            },
-            'es': {
-                'index_page_title': 'Tu Nueva Landing Page | Servicios de Creación Web Personalizada',
-                'index_meta_description': 'Desarrollo de Landing Pages optimizadas para la conversión. Transforma tus ideas en resultados con un diseño moderno y funcionalidad impecable.',
-                'index_og_title': 'Creación de Landing Pages Profesionales - Alcanza Tus Metas Online',
-                'index_og_description': '¿Necesitas una landing page que realmente convierta? Desarrollamos soluciones web personalizadas para destacar tu negocio.',
-                'index_og_locale': 'es_ES',
-                'index_client_name': 'Tu Idea, Nuestro Diseño.',
-                'index_tagline': 'Landing Pages Profesionales que Convierten. Rápido, Efectivo y Personalizado.',
-                'index_description_text': 'Transformamos la visión de tu negocio en experiencias digitales impactantes. Con enfoque en diseño responsivo, usabilidad y optimización para motores de búsqueda, creamos landing pages que generan resultados reales e impulsan tu crecimiento online.',
-                'index_whatsapp_button': 'Contáctanos para un Presupuesto',
-                'index_instagram_button': 'Mira Nuestros Proyectos en Instagram',
-                'index_location_button': 'Encuéntranos en el Mapa',
-                'index_solutions_button': 'Conoce Nuestras Soluciones',
-                'instagram_profile': '@asielcastillo'
-            }
+        'pt': {
+            'index_page_title': 'Sua Landing Page | Soluções Web Personalizadas',
+            'index_meta_description': 'Desenvolvimento de Landing Pages otimizadas para conversão e resultados. Design moderno, funcionalidade impecável e personalização.',
+            'index_og_title': 'Criação de Landing Pages Profissionais - Alcance Seus Objetivos Online',
+            'index_og_description': 'Precisa de uma landing page que realmente converta? Desenvolvemos soluções web personalizadas para destacar seu negócio e gerar resultados.',
+            'index_og_locale': 'pt_BR',
+            'index_client_name': 'Sua Ideia, Nosso Design.',
+            'index_tagline': 'Landing Pages Profissionais que Convertem. Rápido, Eficaz e Personalizado.',
+            'index_description_text': 'Transformamos a visão do seu negócio em experiências digitais impactantes. Com foco em design responsivo, usabilidade e otimização para motores de busca, criamos landing pages que geram resultados reais e impulsionam seu crescimento online.',
+            
+            'differentiators_short_title': 'Por Que Nos Escolher?',
+            'differentiator_speed': '<strong>Agilidade Extrema:</strong> Seu projeto online em tempo recorde.',
+            'differentiator_custom': '<strong>Personalização Total:</strong> Sua marca, sua identidade, sem limites.',
+            'differentiator_results': '<strong>Foco em Resultados:</strong> Design para converter e impulsionar seu sucesso.',
+
+            // INÍCIO DAS MUDANÇAS PARA A OPÇÃO 2
+            'solutions_main_title': 'Crie Sua Landing Page Ideal', // Título da Seção
+            'solutions_intro': 'Este é um exemplo de como podemos construir uma landing page exclusiva e eficaz, pronta para seu lançamento rápido.', // Intro da Seção
+            'solution1_title': 'Personalize com Sua Identidade', // Bloco 1 Título
+            'solution1_description': 'Este é o lugar para os ícones, cores e fontes da sua empresa. Um modelo que se adapta 100% à sua marca, pronto para ser preenchido com seu estilo.', // Bloco 1 Descrição
+            'solution2_title': 'Apresente Seu Diferencial', // Bloco 2 Título
+            'solution2_description': 'Use este modelo para destacar o que torna seu negócio único. Textos e imagens customizáveis para contar sua história e seus serviços de forma eficaz.', // Bloco 2 Descrição
+            'solution3_title': 'Estruture Suas Informações', // Bloco 3 Título
+            'solution3_description': 'Organize suas ideias em seções claras e objetivas. Um layout intuitivo que permite dispor seus produtos, serviços ou portfólio com facilidade.', // Bloco 3 Descrição
+            'solution4_title': 'Engaje e Conquiste Clientes', // Bloco 4 Título
+            'solution4_description': 'Crie um caminho claro para seus visitantes agirem. Integre formulários de contato, links para redes sociais ou botões de compra para impulsionar suas vendas.', // Bloco 4 Descrição
+            // FIM DAS MUDANÇAS PARA A OPÇÃO 2
+
+            'index_whatsapp_button_cta': 'Quero Fazer Meu Projeto!',
+            'index_instagram_button_cta': 'Conheça Meu Trabalho no Instagram',
+            'index_location_button_cta': 'Localização do Escritório',
+            'instagram_profile': '@asielcastillo'
         },
-        'services': {
-            'pt': {
-                'services_page_title': 'Nossos Serviços | Criação de Landing Pages',
-                'services_meta_description': 'Conheça nossos serviços de criação de landing pages personalizadas, consultoria estratégica e otimização web.',
-                'services_client_name': 'Nossas Soluções Digitais',
-                'services_tagline': 'Elevando sua presença online a um novo nível.',
-                'service1_title': 'Consultoria Estratégica Personalizada',
-                'service1_description': 'Analisamos suas necessidades e objetivos para desenvolver um plano de ação exclusivo. Nossa abordagem estratégica garante soluções inovadoras e direcionadas ao crescimento, maximizando seu potencial e otimizando seus recursos.',
-                'service2_title': 'Desenvolvimento e Implementação de Projetos',
-                'service2_description': 'Transformamos suas ideias em realidade, desde o conceito inicial até a execução final. Cuidamos de cada detalhe com expertise e eficiência, garantindo que seu projeto seja entregue com qualidade, dentro do prazo e do orçamento.',
-                'service3_title': 'Otimização e Melhoria Contínua',
-                'service3_description': 'Não paramos na entrega! Oferecemos acompanhamento e otimização contínua para garantir que seus resultados sejam sempre os melhores. Adaptamos e ajustamos estratégias para que seu negócio esteja sempre à frente.',
-                'service4_title': 'Soluções Inovadoras e Tecnológicas',
-                'service4_description': 'Impulsione seu negócio com as mais recentes tendências e tecnologias. Desenvolvemos ferramentas e soluções customizadas que integram inovação e funcionalidade para otimizar processos e engajar seu público.',
-                'services_whatsapp_button_services': 'Quero Minha Landing Page!',
-                'services_back_to_demo_button': 'Voltar para a Demonstração'
-            },
-            'en': {
-                'services_page_title': 'Our Services | Landing Page Creation',
-                'services_meta_description': 'Discover our custom landing page creation services, strategic consulting, and web optimization.',
-                'services_client_name': 'Our Digital Solutions',
-                'services_tagline': 'Elevating your online presence to a new level.',
-                'service1_title': 'Custom Strategic Consulting',
-                'service1_description': 'We analyze your needs and goals to develop an exclusive action plan. Our strategic approach guarantees innovative, growth-oriented solutions, maximizing your potential and optimizing your resources.',
-                'service2_title': 'Project Development and Implementation',
-                'service2_description': 'We transform your ideas into reality, from initial concept to final execution. We handle every detail with expertise and efficiency, ensuring your project is delivered with quality, on time, and within budget.',
-                'service3_title': 'Continuous Optimization and Improvement',
-                'service3_description': 'We don\'t stop at delivery! We offer continuous monitoring and optimization to ensure your results are always the best. We adapt and adjust strategies to keep your business ahead.',
-                'service4_title': 'Innovative and Technological Solutions',
-                'service4_description': 'Boost your business with the latest trends and technologies. We develop customized tools and solutions that integrate innovation and functionality to optimize processes and engage your audience.',
-                'services_whatsapp_button_services': 'I Want My Landing Page!',
-                'services_back_to_demo_button': 'Back to Demo'
-            },
-            'es': {
-                'services_page_title': 'Nuestros Servicios | Creación de Landing Pages',
-                'services_meta_description': 'Descubre nuestros servicios de creación de landing pages personalizadas, consultoría estratégica y optimización web.',
-                'services_client_name': 'Nuestras Soluciones Digitales',
-                'services_tagline': 'Elevando tu presencia online a un nuevo nivel.',
-                'service1_title': 'Consultoría Estratégica Personalizada',
-                'service1_description': 'Analizamos tus necesidades y objetivos para desarrollar un plan de acción exclusivo. Nuestro enfoque estratégico garantiza soluciones innovadoras y orientadas al crecimiento, maximizando tu potencial y optimizando tus recursos.',
-                'service2_title': 'Desarrollo e Implementación de Proyectos',
-                'service2_description': 'Transformamos tus ideas en realidad, desde el concepto inicial hasta la ejecución final. Cuidamos cada detalle con experiencia y eficiencia, garantizando que tu proyecto se entregue con calidad, a tiempo y dentro del presupuesto.',
-                'service3_title': 'Optimización y Mejora Continua',
-                'service3_description': '¡No nos detenemos en la entrega! Ofrecemos seguimiento y optimización continua para garantizar que tus resultados sean siempre los mejores. Adaptamos y ajustamos estrategias para que tu negocio siempre esté a la vanguardia.',
-                'service4_title': 'Soluciones Innovadoras y Tecnológicas',
-                'service4_description': 'Impulsa tu negocio con las últimas tendencias y tecnologías. Desarrollamos herramientas y soluciones personalizadas que integran innovación y funcionalidad para optimizar procesos y atraer a tu audiencia.',
-                'services_whatsapp_button_services': '¡Quiero Mi Landing Page!',
-                'services_back_to_demo_button': 'Volver a la Demostración'
-            }
+        'en': {
+            'index_page_title': 'Your Landing Page | Custom Web Solutions',
+            'index_meta_description': 'Development of optimized Landing Pages for conversion and results. Modern design, impeccable functionality, and personalization.',
+            'index_og_title': 'Professional Landing Page Creation - Achieve Your Online Goals',
+            'index_og_description': 'Need a landing page that truly converts? We develop custom web solutions to highlight your business and generate results.',
+            'index_og_locale': 'en_US',
+            'index_client_name': 'Your Idea, Our Design.',
+            'index_tagline': 'Professional Landing Pages that Convert. Fast, Effective, and Personalized.',
+            'index_description_text': 'We transform your business vision into impactful digital experiences. Focusing on responsive design, usability, and search engine optimization, we create landing pages that generate real results and drive your online growth.',
+            
+            'differentiators_short_title': 'Why Choose Us?',
+            'differentiator_speed': '<strong>Extreme Agility:</strong> Your project online in record time.',
+            'differentiator_custom': '<strong>Total Customization:</strong> Your brand, your identity, no limits.',
+            'differentiator_results': '<strong>Results-Oriented:</strong> Design to convert and boost your success.',
+
+            // INÍCIO DAS MUDANÇAS PARA A OPÇÃO 2
+            'solutions_main_title': 'Create Your Ideal Landing Page',
+            'solutions_intro': 'This is an example of how we can build an exclusive and effective landing page, ready for your quick launch.',
+            'solution1_title': 'Customize with Your Identity',
+            'solution1_description': 'This is the place for your company\'s icons, colors, and fonts. A model that adapts 100% to your brand, ready to be filled with your style.',
+            'solution2_title': 'Present Your Differential',
+            'solution2_description': 'Use this model to highlight what makes your business unique. Customizable texts and images to tell your story and services effectively.',
+            'solution3_title': 'Structure Your Information',
+            'solution3_description': 'Organize your ideas into clear and objective sections. An intuitive layout that allows you to easily display your products, services, or portfolio.',
+            'solution4_title': 'Engage and Win Clients',
+            'solution4_description': 'Create a clear path for your visitors to act. Integrate contact forms, social media links, or purchase buttons to boost your sales.',
+            // FIM DAS MUDANÇAS PARA A OPÇÃO 2
+
+            'index_whatsapp_button_cta': 'I Want My Project Done!',
+            'index_instagram_button_cta': 'See My Work on Instagram',
+            'index_location_button_cta': 'Office Location',
+            'instagram_profile': '@asielcastillo'
+        },
+        'es': {
+            'index_page_title': 'Tu Landing Page | Soluciones Web Personalizadas',
+            'index_meta_description': 'Desarrollo de Landing Pages optimizadas para la conversión y resultados. Diseño moderno, funcionalidad impecable y personalización.',
+            'index_og_title': 'Creación de Landing Pages Profesionales - Alcanza Tus Objetivos Online',
+            'index_og_description': '¿Necesitas una landing page que realmente convierta? Desarrollamos soluciones web personalizadas para destacar tu negocio y generar resultados.',
+            'index_og_locale': 'es_ES',
+            'index_client_name': 'Tu Idea, Nuestro Diseño.',
+            'index_tagline': 'Landing Pages Profesionales que Convierten. Rápido, Eficaz y Personalizado.',
+            'index_description_text': 'Transformamos la visión de tu negocio en experiencias digitales impactantes. Con enfoque en diseño responsivo, usabilidad y optimización para motores de búsqueda, creamos landing pages que generan resultados reales e impulsan tu crecimiento online.',
+            
+            'differentiators_short_title': '¿Por Qué Elegirnos?',
+            'differentiator_speed': '<strong>Agilidad Extrema:</strong> Tu proyecto online en tiempo récord.',
+            'differentiator_custom': '<strong>Personalización Total:</strong> Tu marca, tu identidad, sin límites.',
+            'differentiator_results': '<strong>Enfoque en Resultados:</strong> Diseño para convertir e impulsar tu éxito.',
+
+            // INÍCIO DAS MUDANÇAS PARA A OPÇÃO 2
+            'solutions_main_title': 'Crea Tu Landing Page Ideal',
+            'solutions_intro': 'Este es un ejemplo de cómo podemos construir una landing page exclusiva y efectiva, lista para tu lanzamiento rápido.',
+            'solution1_title': 'Personaliza con Tu Identidad',
+            'solution1_description': 'Este es el lugar para los iconos, colores y fuentes de tu empresa. Un modelo que se adapta al 100% a tu marca, listo para ser rellenado con tu estilo.',
+            'solution2_title': 'Presenta Tu Diferencial',
+            'solution2_description': 'Usa este modelo para destacar lo que hace que tu negocio sea único. Textos e imágenes personalizables para contar tu historia y servicios de forma efectiva.',
+            'solution3_title': 'Estructura Tu Información',
+            'solution3_description': 'Organiza tus ideas en secciones claras y objetivas. Un diseño intuitivo que te permite mostrar tus productos, servicios o portafolio con facilidad.',
+            'solution4_title': 'Engancha y Conquista Clientes',
+            'solution4_description': 'Crea un camino claro para que tus visitantes actúen. Integra formularios de contacto, enlaces a redes sociales o botones de compra para impulsar tus ventas.',
+            // FIM DAS MUDANÇAS PARA A OPÇÃO 2
+
+            'index_whatsapp_button_cta': '¡Quiero Hacer Mi Proyecto!',
+            'index_instagram_button_cta': 'Mira Mi Trabajo en Instagram',
+            'index_location_button_cta': 'Ubicación de la Oficina',
+            'instagram_profile': '@asielcastillo'
         }
     };
 
     function setLanguage(lang) {
-        // Obter a página atual do data-attribute do botão clicado, ou do URL se nenhum botão for clicado (primeira carga)
-        // Isso é crucial para que, ao carregar a página, saibamos qual conjunto de traduções usar.
-        const path = window.location.pathname;
-        let currentPageIdentifier;
-        if (path.includes('servicos.html')) {
-            currentPageIdentifier = 'services';
-        } else {
-            currentPageIdentifier = 'index'; // Padrão para index.html
-        }
-
-        const currentTranslations = translations[currentPageIdentifier][lang];
+        document.documentElement.lang = lang; // Define o atributo lang do <html>
+        localStorage.setItem('preferredLanguage', lang); // Salva a preferência
+        
+        const currentTranslations = translations[lang];
 
         if (!currentTranslations) {
-            console.error(`No translations found for language: ${lang} on page: ${currentPageIdentifier}`);
+            console.error(`No translations found for language: ${lang}`);
             return;
         }
 
-        document.documentElement.lang = lang;
-
-        // Iterar sobre TODOS os elementos com data-key (seja no head ou no body)
         document.querySelectorAll('[data-key]').forEach(element => {
             const key = element.dataset.key;
             const translation = currentTranslations[key];
 
-            if (translation) {
+            if (translation !== undefined) { // Garante que há uma tradução para a chave
                 if (element.tagName === 'TITLE') {
-                    document.title = translation;
+                    document.title = translation; // Atualiza o título da página
                 } else if (element.tagName === 'META') {
-                    // Atualiza apenas as meta tags relevantes (description e og:*)
-                    if (element.getAttribute('name') === 'description' || element.getAttribute('property')) {
+                    // Atualiza o atributo 'content' para meta tags (description e og:*)
+                    if (element.hasAttribute('name') || element.hasAttribute('property')) {
                         element.setAttribute('content', translation);
                     }
                 } else if (element.classList.contains('action-button') && element.querySelector('span')) {
-                    // Para botões de ação que possuem um <span> interno
+                    // Para botões de ação que possuem um <span> interno (apenas texto)
                     element.querySelector('span').textContent = translation;
                 } else {
-                    // Para todos os outros elementos de texto direto
-                    element.textContent = translation;
+                    // Para todos os outros elementos que podem conter HTML (como <strong> ou <br>)
+                    element.innerHTML = translation;
                 }
+            } else {
+                console.warn(`Translation missing for key: "${key}" in language: "${lang}"`);
+                // Se uma tradução estiver faltando, podemos definir o texto como vazio ou manter o original
+                // Para não deixar a página em branco, podemos comentar a linha abaixo,
+                // mas é melhor garantir que todas as chaves tenham traduções.
+                // element.innerHTML = ''; 
             }
         });
 
@@ -242,9 +250,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.classList.add('active');
             }
         });
-
-        // Salvar a preferência do idioma no localStorage
-        localStorage.setItem('preferredLanguage', lang);
     }
 
     // Adicionar event listeners aos botões de idioma
